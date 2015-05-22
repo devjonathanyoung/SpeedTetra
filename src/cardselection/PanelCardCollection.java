@@ -17,5 +17,6 @@ public class PanelCardCollection extends JPanel{
     Button : 50 x 20
     espace : 5
     margin-top: 45
+    Ajout d'un commentaire TEST
      */
 }
