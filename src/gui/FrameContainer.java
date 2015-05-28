@@ -1,5 +1,6 @@
 package gui;
 
+import cardselection.CardSelection;
 import game.GamePanel;
 
 import javax.swing.*;
@@ -11,6 +12,7 @@ public class FrameContainer extends JFrame{
         this.setResizable(false);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setTitle("Tetramaster");
+        //this.setContentPane(new CardSelection());
         this.setContentPane(new GamePanel());
     }
 

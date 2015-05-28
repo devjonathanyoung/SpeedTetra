@@ -9,30 +9,30 @@ import java.awt.*;
 import java.util.List;
 
 public class HandPanel extends JPanel{
-    private int xOrigin;
-    private int yOrigin;
     private Player player;
     private List<TetraCard> playerHandContent;
     private GamePanel parent;
 
 
-    public HandPanel(int xOrigin, int yOrigin, Player player, List<TetraCard> playerHandContent, GamePanel parent){
-        this.xOrigin = xOrigin;
-        this.yOrigin = yOrigin;
+    public HandPanel(Player player, GamePanel parent){
         this.player = player;
-        this.playerHandContent = playerHandContent;
         this.parent = parent;
+        this.setLayout(null);
+        this.playerHandContent = player.getHand();
+        updateCardDisplay();
     }
 
     public void updateCardDisplay(){
-        int marginTop = yOrigin;
+        int marginTop = 0;
         for(int i=0;i<playerHandContent.size();i++){
             ImagePanel cardContainer = new ImagePanel();
-            cardContainer.setBounds(xOrigin,marginTop,77,77);
+            cardContainer.setBounds(0, marginTop,80,80);
+            ActionSetCardSelected ml = new ActionSetCardSelected(parent,this,i,player,cardContainer);
+            cardContainer.addMouseListener(ml);
             cardContainer.redraw("");
-            setBorder(BorderFactory.createLineBorder(Color.black));
+            cardContainer.setBorder(BorderFactory.createLineBorder(Color.black));
             this.add(cardContainer);
-            marginTop += 82;
+            marginTop += 85;
         }
     }
 }
