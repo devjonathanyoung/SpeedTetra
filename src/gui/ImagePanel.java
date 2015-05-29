@@ -37,4 +37,25 @@ public class ImagePanel extends JPanel {
             }
             image = resizedImage;
         }
+        public void addArrow(){
+            BufferedImage modified = null;
+            int type = image.getType() == 0? BufferedImage.TYPE_INT_ARGB : image.getType();
+            modified = new BufferedImage(this.getWidth(), this.getHeight(), type);
+            Graphics2D g = modified.createGraphics();
+            g.drawImage(image, 0, 0,this.getWidth(), this.getHeight(), null);
+
+            Polygon poly = createTriangle("");
+            g.setColor(Color.yellow);
+            g.fillPolygon(poly);
+
+            g.dispose();
+            image = modified;
+            repaint();
+        }
+        private Polygon createTriangle(String direction){
+            int xPoly[] = {5, 15, 5,5};
+            int yPoly[] = {5, 5, 15,5};
+            Polygon poly = new Polygon(xPoly, yPoly, xPoly.length);
+            return poly;
+        }
     }
