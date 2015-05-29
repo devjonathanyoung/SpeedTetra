@@ -12,6 +12,7 @@ public class HandPanel extends JPanel{
     private Player player;
     private List<TetraCard> playerHandContent;
     private GamePanel parent;
+    private JPanel borderer;
 
 
     public HandPanel(Player player, GamePanel parent){
@@ -19,6 +20,8 @@ public class HandPanel extends JPanel{
         this.parent = parent;
         this.setLayout(null);
         this.playerHandContent = player.getHand();
+        borderer = new JPanel();
+        borderer.setBackground(Color.red);
         updateCardDisplay();
     }
 
@@ -26,13 +29,18 @@ public class HandPanel extends JPanel{
         int marginTop = 0;
         for(int i=0;i<playerHandContent.size();i++){
             ImagePanel cardContainer = new ImagePanel();
-            cardContainer.setBounds(0, marginTop,80,80);
+            cardContainer.setBounds(2, marginTop +2,80,80);
             ActionSetCardSelected ml = new ActionSetCardSelected(parent,this,i,player,cardContainer);
             cardContainer.addMouseListener(ml);
-            cardContainer.redraw("");
+            cardContainer.redraw(playerHandContent.get(i).getName());
             cardContainer.setBorder(BorderFactory.createLineBorder(Color.black));
             this.add(cardContainer);
             marginTop += 85;
         }
+        borderize(0);
+    }
+    public void borderize(int index){
+        borderer.setBounds(0, index*85,84,84);
+        add(borderer);
     }
 }

@@ -27,15 +27,13 @@ public class ActionSetCardSelected implements MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        currentGamePanel.setCurrentCard(player,cardNumber);
-        parent.setBorder(BorderFactory.createLineBorder(Color.red));
-        player.removeCardFromHand(cardNumber);
-        currentGamePanel.refresh();
+
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        currentGamePanel.setCurrentCard(player, cardNumber);
+        currentHandPanel.borderize(cardNumber);
     }
 
     @Override

@@ -7,12 +7,11 @@ public class Player {
 
     public Player(){
         Hand = new ArrayList<TetraCard>();
-        Hand.add(new TetraCard());
-        Hand.add(new TetraCard());
-        Hand.add(new TetraCard());
-        Hand.add(new TetraCard());
-        Hand.add(new TetraCard());
-
+        Hand.add(new TetraCard("tm1.png"));
+        Hand.add(new TetraCard("tm2.png"));
+        Hand.add(new TetraCard("tm4.png"));
+        Hand.add(new TetraCard("tm1.png"));
+        Hand.add(new TetraCard("tm3.png"));
     }
     public TetraCard getCard(int cardNumber){
         return Hand.get(cardNumber);

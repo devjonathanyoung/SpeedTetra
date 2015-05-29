@@ -11,6 +11,7 @@ public class GamePanel extends JPanel{
     private Player player2;
     private HandPanel player1Hand;
     private HandPanel player2Hand;
+    private BoardPanel board;
 
     public void setCurrentCard(Player player, int cardNumber){
         this.cardSelected = player.getCard(cardNumber);
@@ -31,11 +32,15 @@ public class GamePanel extends JPanel{
     }
     private void initComponent(){
         player1Hand = new HandPanel(player1,this);
-        player1Hand.setBounds(20,60,85,4*85 + 80);
+        player1Hand.setBounds(10,60,90,440);
         add(player1Hand);
 
         player2Hand = new HandPanel(player2,this);
-        player2Hand.setBounds(500,60,85,4*85 + 80);
+        player2Hand.setBounds(510,60,90,440);
         add(player2Hand);
+
+        board = new BoardPanel();
+        board.setBounds(100,70,400,400);
+        add(board);
     }
 }
