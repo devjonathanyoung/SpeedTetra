@@ -6,7 +6,8 @@ import data.TetraCard;
 import javax.swing.*;
 
 public class GamePanel extends JPanel{
-    private TetraCard cardSelected;
+    private Player cardSelectedPlayer;
+    private int cardSelectedNumber;
     private Player player1;
     private Player player2;
     private HandPanel player1Hand;
@@ -14,14 +15,28 @@ public class GamePanel extends JPanel{
     private BoardPanel board;
 
     public void setCurrentCard(Player player, int cardNumber){
-        this.cardSelected = player.getCard(cardNumber);
+        this.cardSelectedPlayer = player;
+        this.cardSelectedNumber = cardNumber;
     }
 
+    public TetraCard getCurrentCard(){
+        if(cardSelectedPlayer == null) return null;
+        return cardSelectedPlayer.getCard(cardSelectedNumber);
+    }
+    public void removeCurrentCard(){
+        cardSelectedPlayer.removeCardFromHand(cardSelectedNumber);
+        cardSelectedPlayer = null;
+        cardSelectedNumber = -1;
+    }
     public GamePanel(){
+        cardSelectedPlayer = null;
+        cardSelectedNumber = -1;
         player1 = new Player();
         player2 = new Player();
         this.setSize(600,600);
         this.setLayout(null);
+        board = new BoardPanel(this);
+        board.setBounds(100,70,400,400);
         initComponent();
     }
     public void refresh(){
@@ -39,8 +54,6 @@ public class GamePanel extends JPanel{
         player2Hand.setBounds(510,60,90,440);
         add(player2Hand);
 
-        board = new BoardPanel();
-        board.setBounds(100,70,400,400);
         add(board);
     }
 }
