@@ -5,6 +5,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.*;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
@@ -18,11 +20,11 @@ public class ImagePanel extends JPanel {
             g.drawImage(image, 0, 0, null);
         }
 
-        public void redraw(String name){
-            buildImage(name);
+        public void redraw(String name,List<Integer> arrows){
+            buildImage(name,arrows);
             repaint();
         }
-        private void buildImage(String name){
+        private void buildImage(String name, List<Integer> arrows){
             BufferedImage resizedImage = null;
             try {
                 BufferedImage rawImage = ImageIO.read(new File(Paths.get(ImagePanel.PATHTOIMAGES, name).toString()));
@@ -36,15 +38,9 @@ public class ImagePanel extends JPanel {
                 System.err.println("Could not find picture " + name);
             }
             image = resizedImage;
-            addArrow(1);
-            addArrow(2);
-            addArrow(3);
-            addArrow(4);
-            addArrow(5);
-            addArrow(6);
-            addArrow(7);
-            addArrow(8);
-
+            for(int i:arrows){
+                addArrow(i);
+            }
         }
         public void addArrow(int direction){
             BufferedImage modified = null;

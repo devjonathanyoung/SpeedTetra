@@ -11,11 +11,11 @@ public class Player {
     }
 
     protected void initHand(){
-        Hand.add(new TetraCard("tm1.png"));
-        Hand.add(new TetraCard("tm2.png"));
-        Hand.add(new TetraCard("tm4.png"));
-        Hand.add(new TetraCard("tm1.png"));
-        Hand.add(new TetraCard("tm3.png"));
+        Hand.add(new TetraCard("dog1.jpg"));
+        Hand.add(new TetraCard("dog2.jpg"));
+        Hand.add(new TetraCard("dog4.jpg"));
+        Hand.add(new TetraCard("dog1.jpg"));
+        Hand.add(new TetraCard("dog3.jpg"));
     }
 
     public TetraCard getCard(int cardNumber){

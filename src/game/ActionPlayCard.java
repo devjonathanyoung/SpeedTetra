@@ -1,5 +1,7 @@
 package game;
 
+import data.TetraCard;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -17,7 +19,8 @@ public class ActionPlayCard implements MouseListener{
     @Override
     public void mouseClicked(MouseEvent e) {
         if(parent.isPlayable() && currentGamePanel.getCurrentCard() != null){
-            parent.redraw(currentGamePanel.getCurrentCard().getName());
+            TetraCard activeCard = currentGamePanel.getCurrentCard();
+            parent.redraw(activeCard.getName(),activeCard.getArrows());
             currentGamePanel.removeCurrentCard();
             currentGamePanel.refresh();
         }

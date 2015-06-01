@@ -59,4 +59,5 @@ public class GamePanel extends JPanel{
 
         add(board);
     }
+
 }
