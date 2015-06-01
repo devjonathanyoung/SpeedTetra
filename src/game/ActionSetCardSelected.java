@@ -32,8 +32,10 @@ public class ActionSetCardSelected implements MouseListener{
 
     @Override
     public void mousePressed(MouseEvent e) {
-        currentGamePanel.setCurrentCard(player, cardNumber);
-        currentHandPanel.borderize(cardNumber);
+        if(player.identify().equalsIgnoreCase(currentGamePanel.getPlayerTurn())){
+            currentGamePanel.setCurrentCard(player, cardNumber);
+            currentHandPanel.borderize(cardNumber);
+        }
     }
 
     @Override

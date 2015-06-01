@@ -19,12 +19,16 @@ public class ImagePanel extends JPanel {
             super.paintComponent(g);
             g.drawImage(image, 0, 0, null);
         }
-
-        public void redraw(String name,List<Integer> arrows){
-            buildImage(name,arrows);
+        public void redraw(String name){
+            buildImage(name);
             repaint();
         }
-        private void buildImage(String name, List<Integer> arrows){
+        public void redraw(String name,List<Integer> arrows){
+            buildImage(name);
+            generateArrows(arrows);
+            repaint();
+        }
+        private void buildImage(String name){
             BufferedImage resizedImage = null;
             try {
                 BufferedImage rawImage = ImageIO.read(new File(Paths.get(ImagePanel.PATHTOIMAGES, name).toString()));
@@ -38,6 +42,8 @@ public class ImagePanel extends JPanel {
                 System.err.println("Could not find picture " + name);
             }
             image = resizedImage;
+        }
+        private void generateArrows(List<Integer> arrows){
             for(int i:arrows){
                 addArrow(i);
             }

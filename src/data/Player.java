@@ -4,8 +4,10 @@ import java.util.*;
 
 public class Player {
     protected List<TetraCard> Hand;
+    protected String name;
 
-    public Player(){
+    public Player(String name){
+        this.name = name;
         Hand = new ArrayList<TetraCard>();
         initHand();
     }
@@ -26,5 +28,8 @@ public class Player {
     }
     public void removeCardFromHand(int index){
         this.Hand.remove(index);
+    }
+    public String identify(){
+        return name;
     }
 }

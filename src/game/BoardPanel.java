@@ -3,6 +3,7 @@ package game;
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
+import java.util.Random;
 
 public class BoardPanel extends JPanel {
     private HashMap<String,SquarePanel> boardSquares;
@@ -14,6 +15,7 @@ public class BoardPanel extends JPanel {
         this.setBorder(BorderFactory.createLineBorder(Color.black));
         boardSquares = new HashMap<String, SquarePanel>();
         initSquares();
+        putRandomStones();
     }
 
     private void initSquares(){
@@ -28,6 +30,19 @@ public class BoardPanel extends JPanel {
         }
         for(String it: boardSquares.keySet()){
             add(boardSquares.get(it));
+        }
+    }
+
+    private void putRandomStones(){
+        Random r = new Random();
+        int x,y;
+        int numberOfStones = r.nextInt(4) + 2;
+        for(int i=0;i<numberOfStones;i++){
+            x= r.nextInt(3);
+            y= r.nextInt(3);
+            SquarePanel sp = boardSquares.get(x + ":" + y);
+            sp.redraw("stone.jpg");
+            sp.setPlayable(false);
         }
     }
 }

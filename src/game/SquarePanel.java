@@ -15,11 +15,11 @@ public class SquarePanel extends ImagePanel{
         this.setBorder(BorderFactory.createLineBorder(Color.black));
         containedCard = null;
         this.playable = playable;
-
     }
 
     public boolean isPlayable(){
         return playable;
     }
 
+    public void setPlayable(boolean playable){this.playable = playable;}
 }

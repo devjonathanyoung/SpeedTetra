@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class Npc extends Player{
 
-    public Npc(){
-        super();
+    public Npc(String name){
+        super(name);
     }
 
     @Override

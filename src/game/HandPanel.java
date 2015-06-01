@@ -33,15 +33,17 @@ public class HandPanel extends JPanel{
             ActionSetCardSelected ml = new ActionSetCardSelected(parent,this,i,player,cardContainer);
             cardContainer.addMouseListener(ml);
             TetraCard activeCard = playerHandContent.get(i);
-            cardContainer.redraw(activeCard.getName(),activeCard.getArrows());
-            cardContainer.setBorder(BorderFactory.createLineBorder(Color.black));
+            cardContainer.redraw(activeCard.getName(), activeCard.getArrows());
             this.add(cardContainer);
             marginTop += 85;
         }
-        borderize(0);
     }
+
     public void borderize(int index){
         borderer.setBounds(0, index*85,84,84);
         add(borderer);
+    }
+    public void removeBorder(){
+        remove(borderer);
     }
 }

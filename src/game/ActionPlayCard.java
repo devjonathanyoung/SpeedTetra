@@ -23,6 +23,8 @@ public class ActionPlayCard implements MouseListener{
             parent.redraw(activeCard.getName(),activeCard.getArrows());
             currentGamePanel.removeCurrentCard();
             currentGamePanel.refresh();
+            currentGamePanel.changeTurn();
+            parent.setPlayable(false);
         }
     }
 
