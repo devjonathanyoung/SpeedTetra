@@ -2,8 +2,6 @@ package game;
 
 import data.Player;
 import data.TetraCard;
-import gui.ImagePanel;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -28,9 +26,9 @@ public class HandPanel extends JPanel{
     public void updateCardDisplay(){
         int marginTop = 0;
         for(int i=0;i<playerHandContent.size();i++){
-            ImagePanel cardContainer = new ImagePanel();
+            CardPanel cardContainer = new CardPanel();
             cardContainer.setBounds(2, marginTop +2,80,80);
-            ActionSetCardSelected ml = new ActionSetCardSelected(parent,this,i,player,cardContainer);
+            ActionSetCardSelected ml = new ActionSetCardSelected(parent,this,i,player);
             cardContainer.addMouseListener(ml);
             TetraCard activeCard = playerHandContent.get(i);
             cardContainer.redraw(activeCard.getName(), activeCard.getArrows());

@@ -1,10 +1,6 @@
 package game;
 
 import data.Player;
-import gui.ImagePanel;
-
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -14,15 +10,13 @@ public class ActionSetCardSelected implements MouseListener{
     private HandPanel currentHandPanel;
     private int cardNumber;
     private Player player;
-    private ImagePanel parent;
 
     public ActionSetCardSelected(GamePanel currentGamePanel, HandPanel currentHandPanel,
-                                 int cardNumber, Player player, ImagePanel parent) {
+                                 int cardNumber, Player player) {
         this.currentGamePanel = currentGamePanel;
         this.currentHandPanel = currentHandPanel;
         this.cardNumber = cardNumber;
         this.player = player;
-        this.parent = parent;
     }
 
     @Override

@@ -14,12 +14,13 @@ public class TetraCard extends RawTetraCard {
     }
     private void generateRandomArrows(){
         Random r = new Random();
-        int numberOfArrows = r.nextInt(8-1) + 1;
+        int numberOfArrows = r.nextInt(7) + 1;
         int chooser;
-        for(int i=1;i<=numberOfArrows;i++){
-            chooser = r.nextInt(1) +1;
-            if (chooser == 1){
-                arrows.add(i);
+        for(int i=1;i<=numberOfArrows;){
+            chooser = r.nextInt(7) +1;
+            if(!arrows.contains(chooser)){
+                arrows.add(chooser);
+                i++;
             }
         }
     }
@@ -44,5 +45,25 @@ public class TetraCard extends RawTetraCard {
             name = name.replace("dog","cat");
         }
     }
-
+    public boolean canAccess(String direction){
+        if(direction.equalsIgnoreCase("north") && arrows.contains(2))
+            return true;
+         else if(direction.equalsIgnoreCase("northEast") && arrows.contains(3))
+            return true;
+         else if(direction.equalsIgnoreCase("east") && arrows.contains(4))
+            return true;
+         else if(direction.equalsIgnoreCase("southEast") && arrows.contains(5))
+            return true;
+         else if(direction.equalsIgnoreCase("south") && arrows.contains(6))
+            return true;
+         else if(direction.equalsIgnoreCase("southWest") && arrows.contains(7))
+            return true;
+         else if(direction.equalsIgnoreCase("west") && arrows.contains(8))
+            return true;
+         else if(direction.equalsIgnoreCase("northWest") && arrows.contains(1))
+            return true;
+         else
+            return false;
+        
+    }
 }
