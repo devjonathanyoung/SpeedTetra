@@ -4,7 +4,6 @@ import gui.ImagePanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class PanelCardSelected extends JPanel {
     private ImagePanel[] panels = null;
@@ -16,7 +15,6 @@ public class PanelCardSelected extends JPanel {
         panels = new ImagePanel[5];
         buttons = new JButton[5];
         initComponent();
-        addImagePanel();
         addImagePanel();
         addImagePanel();
         addImagePanel();
@@ -76,7 +74,6 @@ public class PanelCardSelected extends JPanel {
     }
 
     private void OpenPopup(){
-        System.out.println("Hello World!");
     }
 
 }
