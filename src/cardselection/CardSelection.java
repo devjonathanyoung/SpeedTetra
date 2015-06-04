@@ -1,13 +1,18 @@
 package cardselection;
 
+import data.User;
+
 import javax.swing.*;
 
 public class CardSelection extends JPanel{
+
+    private User user;
 
     public CardSelection(){
         this.setSize(600,600);
         this.setLayout(null);
         initComponent();
+        user = new User("Joueur 1");
     }
 
 
@@ -24,8 +29,8 @@ public class CardSelection extends JPanel{
         playerInfo.setBounds(455,60,130,100);
         add(playerInfo);
 
-        PanelCardCollection cardCollection = new PanelCardCollection();
-        cardCollection.setBounds(150,40,450,560);
+        PanelCardCollection cardCollection = new PanelCardCollection(user);
+        cardCollection.setBounds(150,40,450,450);
         add(cardCollection);
 
 

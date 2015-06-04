@@ -48,23 +48,22 @@ public class BoardPanel extends JPanel {
             sp.setPlayable(false);
         }
     }
-    public Player getWinner(Player player1, Player player2){
-        int numberCardPlayer1 = 0;
-        int numberCardPlayer2 = 0;
-
+    public int getPlayerScore(Player player){
+        int score = 0;
         for(String s:boardSquares.keySet()){
-            //System.out.println("Square " + s + " : " + boardSquares.get(s).owner);
             Player boardSquareOwner = boardSquares.get(s).owner;
             if(boardSquareOwner != null){
-                if(boardSquareOwner.identify().equalsIgnoreCase(player1.identify())){
-                    numberCardPlayer1++;
-                } else if(boardSquareOwner.identify().equalsIgnoreCase(player2.identify())){
-                    numberCardPlayer2++;
+                if(boardSquareOwner.identify().equalsIgnoreCase(player.identify())){
+                    score++;
                 }
             }
         }
-        System.out.println(numberCardPlayer1);
-        System.out.println(numberCardPlayer2);
+        return score;
+    }
+    public Player getWinner(Player player1, Player player2){
+        int numberCardPlayer1 = getPlayerScore(player1);
+        int numberCardPlayer2 = getPlayerScore(player2);
+
         if(numberCardPlayer1 > numberCardPlayer2){
             return player1;
         }

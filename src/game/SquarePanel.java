@@ -2,13 +2,14 @@ package game;
 
 import data.Player;
 import data.TetraCard;
+import gui.CardPanel;
 import gui.StaticHelper;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 
-public class SquarePanel extends CardPanel{
+public class SquarePanel extends CardPanel {
     private TetraCard containedCard;
     private HashMap<String,SquarePanel> accessibleSquares;
     private boolean playable;
@@ -46,8 +47,9 @@ public class SquarePanel extends CardPanel{
     public TetraCard getContainedCard(){
         return containedCard;
     }
+
     public void attack(){
-        SquarePanel attackedSquare;
+        SquarePanel attackedSquare = null;
         boolean canDef;
         boolean win;
         for(String direction: accessibleSquares.keySet()){
@@ -61,9 +63,6 @@ public class SquarePanel extends CardPanel{
                        attackedSquare.owner = this.owner;
                     } else {
                         this.owner = attackedSquare.owner;
-                        this.redraw();
-                        attackedSquare.redraw();
-                        break;
                     }
                 }else{
                     attackedSquare.getContainedCard().switchSide();
@@ -74,4 +73,5 @@ public class SquarePanel extends CardPanel{
             }
         }
     }
+
 }

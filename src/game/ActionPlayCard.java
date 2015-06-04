@@ -16,20 +16,20 @@ public class ActionPlayCard implements MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
         if(parent.isPlayable() && currentGamePanel.getCurrentCard() != null){
             parent.redraw(currentGamePanel.getCurrentCard());
             parent.owner = currentGamePanel.getCardSelectedPlayer();
             currentGamePanel.removeCurrentCard();
             currentGamePanel.refresh();
-            currentGamePanel.changeTurn();
             parent.setPlayable(false);
             parent.attack();
+            currentGamePanel.changeTurn();
         }
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
     }
 
     @Override

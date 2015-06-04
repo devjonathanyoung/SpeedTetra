@@ -2,85 +2,103 @@ package cardselection;
 
 import javax.swing.*;
 import java.awt.*;
-import gui.ImagePanel;
+
+import data.Player;
+import data.User;
+import gui.CardPanel;
 
 public class PanelCardCollection extends JPanel{
-    private ImagePanel[] panelsHorizontal = null;
-    private ImagePanel[] panelsVertical = null;
-    private ImagePanel[] arrows = null;
-    private JButton[] buttons = null;
+    private CardPanel[] panelsHorizontal = null;
+    private CardPanel[] panelsVertical = null;
+    private ArrowPanel[] arrowPanels = null;
+    private User user;
 
-    public PanelCardCollection(){
+    public PanelCardCollection(User user){
         this.setLayout(null);
         this.setBackground(Color.green);
-        panelsHorizontal = new ImagePanel[5];
-        panelsVertical = new ImagePanel[5];
-        arrows = new ImagePanel[4];
-        buttons = new JButton[10];
+        panelsHorizontal = new CardPanel[5];
+        panelsVertical = new CardPanel[4];
+        arrowPanels = new ArrowPanel[4];
+        this.user = user;
         initComponent();
     }
-
-    /*
-    DIMENSION : A RETENIR
-    Image : 50 x 50
-    Fleche : 25 x 25
-    Button : 50 x 20
-    espace : 5
-    margin-top: 45
-     */
     private void initComponent(){
-        int marginLeft=0;
+        int marginLeft = 20;
+        int marginTop = 190;
 
-        arrows[0] = new ImagePanel();
-        arrows[0].setBounds(marginLeft, 275, 25, 25);
-        arrows[0].setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        add(arrows[0]);
-        marginLeft+=25;
-        //Espace
-        marginLeft+=5;
-        for(int a = 0; a < panelsHorizontal.length;a++){
+        arrowPanels[0] = new ArrowPanel();
+        arrowPanels[0].setBounds(marginLeft,marginTop+22,25,25);
+        arrowPanels[0].drawButton(4);
+        marginLeft += 40;
 
-            panelsHorizontal[a] = new ImagePanel();
-            panelsHorizontal[a].setBounds(marginLeft,255,50,50);
-            panelsHorizontal[a].setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            add(panelsHorizontal[a]);
-            buttons[a] = new JButton("Add");
-            buttons[a].setFocusPainted(false);
-            buttons[a].setBounds(marginLeft, 305, 50, 20);
-            buttons[a].setMargin(new Insets(0, 0, 0, 0));
-            add(buttons[a]);
-            marginLeft+=50;
-            marginLeft+=5;
+        panelsHorizontal[0] = new CardPanel();
+        panelsHorizontal[0].setBounds(marginLeft,marginTop+10,50,50);
+        marginLeft += 65;
 
+        panelsHorizontal[1] = new CardPanel();
+        panelsHorizontal[1].setBounds(marginLeft, marginTop + 10, 50, 50);
+        marginLeft += 65;
+
+        drawVerticalRow(marginLeft);
+
+        panelsHorizontal[2] = new CardPanel();
+        panelsHorizontal[2].setBounds(marginLeft, marginTop, 70, 70);
+        marginLeft += 85;
+
+        panelsHorizontal[3] = new CardPanel();
+        panelsHorizontal[3].setBounds(marginLeft, marginTop + 10, 50, 50);
+        marginLeft += 65;
+
+        panelsHorizontal[4] = new CardPanel();
+        panelsHorizontal[4].setBounds(marginLeft, marginTop + 10, 50, 50);
+        marginLeft += 65;
+
+        arrowPanels[3] = new ArrowPanel();
+        arrowPanels[3].setBounds(marginLeft, marginTop + 22, 25, 25);
+        arrowPanels[3].drawButton(2);
+
+        for(CardPanel cp:panelsHorizontal){
+            cp.setBorder(BorderFactory.createLineBorder(Color.black));
+            add(cp);
         }
-        arrows[1] = new ImagePanel();
-        arrows[1].setBounds(marginLeft,275,25,25);
-        arrows[1].setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        add(arrows[1]);
-
-        // Vertical
-        int marginTop = 45;
-        arrows[2] = new ImagePanel();
-        arrows[2].setBounds(225, marginTop, 25, 25);
-        arrows[2].setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        add(arrows[2]);
-        marginTop+=25;
-        //Espace
-        marginTop+=5;
-        for(int a = 0; a < panelsVertical.length;a++){
-
-            panelsVertical[a] = new ImagePanel();
-            panelsVertical[a].setBounds(205,marginTop,50,50);
-            panelsVertical[a].setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            add(panelsVertical[a]);
-
-            marginTop+=50;
-            marginTop+=5;
-
+        for(CardPanel cp:panelsVertical){
+            cp.setBorder(BorderFactory.createLineBorder(Color.black));
+            add(cp);
         }
-        arrows[3] = new ImagePanel();
-        arrows[3].setBounds(225,marginTop,25,25);
-        arrows[3].setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        add(arrows[3]);
+        for(ArrowPanel ap :arrowPanels){
+            add(ap);
+        }
+    }
+    private void drawVerticalRow(int marginLeft){
+        int marginTopVerticalCards = 20;
+
+        arrowPanels[1] = new ArrowPanel();
+        arrowPanels[1].setBounds(marginLeft + 22, marginTopVerticalCards,25,25);
+        arrowPanels[1].drawButton(1);
+        marginTopVerticalCards += 40;
+
+        panelsVertical[0] = new CardPanel();
+        panelsVertical[0].setBounds(marginLeft+10,marginTopVerticalCards,50,50);
+        marginTopVerticalCards += 65;
+
+        panelsVertical[1] = new CardPanel();
+        panelsVertical[1].setBounds(marginLeft + 10, marginTopVerticalCards, 50, 50);
+        marginTopVerticalCards += 150;
+
+        panelsVertical[2] = new CardPanel();
+        panelsVertical[2].setBounds(marginLeft + 10, marginTopVerticalCards, 50, 50);
+        marginTopVerticalCards += 65;
+
+        panelsVertical[3] = new CardPanel();
+        panelsVertical[3].setBounds(marginLeft + 10, marginTopVerticalCards, 50, 50);
+        marginTopVerticalCards += 65;
+
+        arrowPanels[2] = new ArrowPanel();
+        arrowPanels[2].setBounds(marginLeft + 22, marginTopVerticalCards, 25, 25);
+        arrowPanels[2].drawButton(3);
+    }
+
+    public void initCardContainers(){
+
     }
 }

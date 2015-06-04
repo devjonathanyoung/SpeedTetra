@@ -2,6 +2,8 @@ package game;
 
 import data.Player;
 import data.TetraCard;
+import gui.CardPanel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
