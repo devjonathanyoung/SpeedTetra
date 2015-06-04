@@ -16,6 +16,9 @@ public class GamePanel extends JPanel{
     private HandPanel player2Hand;
     private BoardPanel board;
     private JLabel lblTurn;
+    private JLabel lblPlayer1Score;
+    private JLabel lblPlayer2Score;
+
     public GamePanel(){
         this.setSize(600,600);
         this.setLayout(null);
@@ -31,7 +34,13 @@ public class GamePanel extends JPanel{
         board.setBounds(95,70,400,400);
 
         lblTurn = new JLabel("Player 1 Turn", SwingConstants.CENTER);
-        lblTurn.setBounds(95,475,400,40);
+        lblTurn.setBounds(95,475,400,20);
+
+        lblPlayer1Score = new JLabel("Player 1 Score : 0", SwingConstants.CENTER);
+        lblPlayer1Score.setBounds(95,495,400,20);
+
+        lblPlayer2Score = new JLabel("Player 2 Score : 0", SwingConstants.CENTER);
+        lblPlayer2Score.setBounds(95,515,400,20);
 
         initComponent();
 
@@ -49,6 +58,8 @@ public class GamePanel extends JPanel{
 
         add(board);
         add(lblTurn);
+        add(lblPlayer1Score);
+        add(lblPlayer2Score);
 
     }
 
@@ -84,9 +95,14 @@ public class GamePanel extends JPanel{
     }
 
     public void changeTurn(){
+        lblPlayer1Score.setText("Player 1 Score : " + board.getPlayerScore(player1));
+        lblPlayer2Score.setText("Player 2 Score : " + board.getPlayerScore(player2));
+
         if(player1.getHand().isEmpty() && player2.getHand().isEmpty()){
             this.endGame();
+            return;
         }
+
         if(playerTurn.equalsIgnoreCase(player1.identify())){
             playerTurn = player2.identify();
             player1Hand.removeBorder();
