@@ -14,6 +14,8 @@ public class PanelCardCollection extends JPanel{
     private CardPanel[] panelsVertical = null;
     private ArrowPanel[] arrowPanels = null;
     private User user;
+    private CardPanel parent;
+    private PanelCardSelected destination;
 
     public PanelCardCollection(User user){
         this.setLayout(null);
@@ -46,7 +48,7 @@ public class PanelCardCollection extends JPanel{
 
         panelsHorizontal[2] = new CardPanel();
         panelsHorizontal[2].setBounds(marginLeft, marginTop, 70, 70);
-        panelsHorizontal[2].addMouseListener(new ActionAddSelectedCard(this,2));
+        panelsHorizontal[2].addMouseListener(new ActionAddSelectedCard(parent.getContainedCard(),destination));
         marginLeft += 85;
 
         panelsHorizontal[3] = new CardPanel();
@@ -122,9 +124,5 @@ public class PanelCardCollection extends JPanel{
                 break;
             }
         }
-    }
-
-    public void addCard(int index){
-
     }
 }

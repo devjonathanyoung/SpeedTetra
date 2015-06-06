@@ -1,5 +1,6 @@
 package cardselection;
 
+import data.TetraCard;
 import gui.ImagePanel;
 
 import javax.swing.*;
@@ -15,10 +16,6 @@ public class PanelCardSelected extends JPanel {
         panels = new ImagePanel[5];
         buttons = new JButton[5];
         initComponent();
-        addImagePanel();
-        addImagePanel();
-        addImagePanel();
-        addImagePanel();
     }
 
     private void initComponent(){
@@ -47,9 +44,10 @@ public class PanelCardSelected extends JPanel {
         panels[i].setVisible(false);
         buttons[i].setVisible(false);
     }
-    public void addImagePanel(){
+    public void addImagePanel(TetraCard tc){
         for(int i=0;i<panels.length;i++){
             if(!panels[i].isVisible()){
+                panels[i].redraw(tc.getName());
                 panels[i].setVisible(true);
                 buttons[i].setVisible(true);
                 break;
