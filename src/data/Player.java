@@ -11,6 +11,10 @@ public class Player {
         Hand = new ArrayList<TetraCard>();
         initHand();
     }
+    public Player(String name,List<TetraCard> Hand){
+        this.name = name;
+        this.Hand = Hand;
+    }
 
     protected void initHand(){
         Hand.add(new TetraCard("dog1.jpg"));

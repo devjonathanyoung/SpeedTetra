@@ -13,6 +13,6 @@ public class ActionRemoveImagePanel implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        pcs.removeImagePanel(index);
+        pcs.removeCardPanel(index);
     }
 }

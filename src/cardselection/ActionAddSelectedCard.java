@@ -1,6 +1,5 @@
 package cardselection;
 
-import data.TetraCard;
 import gui.CardPanel;
 
 import java.awt.event.MouseEvent;
@@ -10,10 +9,11 @@ import java.awt.event.MouseListener;
  * Created by suissia on 06/06/2015.
  */
 public class ActionAddSelectedCard implements MouseListener {
-    private TetraCard currentCard;
+    private CardPanel parent;
     private PanelCardSelected currentDestination;
-    public ActionAddSelectedCard(TetraCard currentCard,PanelCardSelected currentDestination){
-        this.currentCard = currentCard;
+
+    public ActionAddSelectedCard(CardPanel parent,PanelCardSelected currentDestination){
+        this.parent = parent;
         this.currentDestination=currentDestination;
     }
 
@@ -24,7 +24,7 @@ public class ActionAddSelectedCard implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        currentDestination.addImagePanel(currentCard);
+        currentDestination.addCardPanel(parent.getContainedCard());
     }
 
     @Override

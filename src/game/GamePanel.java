@@ -1,10 +1,14 @@
 package game;
 
+import cardselection.ArrowPanel;
 import data.Npc;
 import data.Player;
 import data.TetraCard;
+import data.User;
+import gui.FrameContainer;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class GamePanel extends JPanel{
     private Player cardSelectedPlayer;
@@ -20,13 +24,26 @@ public class GamePanel extends JPanel{
     private JLabel lblPlayer2Score;
 
     public GamePanel(){
+        player1 = new Player("Joueur 1");
+        player2 = new Npc("NPC");
+
+        initComponent();
+        updateComponent();
+    }
+    public GamePanel(FrameContainer frameContainer, User user, ArrayList<TetraCard> Hand){
+        player1 = new Player(user.getName(),Hand);
+        player2 = new Npc("NPC");
+
+        initComponent();
+        updateComponent();
+    }
+    private void initComponent(){
         this.setSize(600,600);
         this.setLayout(null);
 
         cardSelectedPlayer = null;
         cardSelectedNumber = -1;
-        player1 = new Player("Joueur 1");
-        player2 = new Npc("NPC");
+
         playerTurn = player1.identify();
         setCurrentCard(player1,0);
 
@@ -42,11 +59,8 @@ public class GamePanel extends JPanel{
         lblPlayer2Score = new JLabel("Player 2 Score : 0", SwingConstants.CENTER);
         lblPlayer2Score.setBounds(95,515,400,20);
 
-        initComponent();
-
     }
-
-    private void initComponent(){
+    private void updateComponent(){
         player1Hand = new HandPanel(player1,this);
         player1Hand.setBounds(5,60,90,440);
         player1Hand.borderize(0);
@@ -91,7 +105,7 @@ public class GamePanel extends JPanel{
         this.removeAll();
         this.revalidate();
         this.repaint();
-        this.initComponent();
+        this.updateComponent();
     }
 
     public void changeTurn(){
