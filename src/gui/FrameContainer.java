@@ -13,7 +13,7 @@ public class FrameContainer extends JFrame{
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setTitle("Tetramaster");
         //this.setContentPane(new CardSelection());
-        this.setContentPane(new GamePanel());
+        this.setContentPane(new CardSelection());
     }
 
     public void start(){

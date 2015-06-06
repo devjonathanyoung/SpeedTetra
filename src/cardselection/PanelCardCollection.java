@@ -3,7 +3,6 @@ package cardselection;
 import javax.swing.*;
 import java.awt.*;
 
-import data.Player;
 import data.User;
 import gui.CardPanel;
 
@@ -43,6 +42,7 @@ public class PanelCardCollection extends JPanel{
 
         panelsHorizontal[2] = new CardPanel();
         panelsHorizontal[2].setBounds(marginLeft, marginTop, 70, 70);
+        panelsHorizontal[2].addMouseListener(new ActionAddSelectedCard(this,2));
         marginLeft += 85;
 
         panelsHorizontal[3] = new CardPanel();
@@ -99,6 +99,10 @@ public class PanelCardCollection extends JPanel{
     }
 
     public void initCardContainers(){
+
+    }
+
+    public void addCard(int index){
 
     }
 }
