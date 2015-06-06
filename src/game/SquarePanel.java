@@ -39,9 +39,7 @@ public class SquarePanel extends CardPanel {
         super.redraw(name);
     }
 
-    public TetraCard getContainedCard(){
-        return containedCard;
-    }
+
 
     public void attack(){
         SquarePanel attackedSquare = null;

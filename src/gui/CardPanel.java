@@ -10,7 +10,9 @@ import java.util.List;
 public class CardPanel extends ImagePanel{
 
     protected TetraCard containedCard;
-
+    public TetraCard getContainedCard(){
+        return containedCard;
+    }
     public void redraw(String name,List<Integer> arrows){
         buildImage(name);
         generateArrows(arrows);
