@@ -15,7 +15,29 @@ public class User {
 
     private void buildDeck(){
         this.cardCollection = new HashMap<String, ArrayList<TetraCard>>();
-        ArrayList<TetraCard> tempCards = new ArrayList<TetraCard>();
-        //cardCollection.put("")
+        addCardToDeck(new TetraCard("dog1.jpg"));
+        addCardToDeck(new TetraCard("dog2.jpg"));
+        addCardToDeck(new TetraCard("dog2.jpg"));
+        addCardToDeck(new TetraCard("dog2.jpg"));
+        addCardToDeck(new TetraCard("dog4.jpg"));
+        addCardToDeck(new TetraCard("dog4.jpg"));
+        addCardToDeck(new TetraCard("dog4.jpg"));
+        addCardToDeck(new TetraCard("dog4.jpg"));
+        addCardToDeck(new TetraCard("dog1.jpg"));
+        addCardToDeck(new TetraCard("dog3.jpg"));
+        addCardToDeck(new TetraCard("dog3.jpg"));
+        addCardToDeck(new TetraCard("dog3.jpg"));
+    }
+    private void addCardToDeck(TetraCard tc){
+        if(!cardCollection.containsKey(tc.getName()))
+            cardCollection.put(tc.getName(),new ArrayList<TetraCard>());
+
+        cardCollection.get(tc.getName()).add(tc);
+    }
+    public HashMap<String,ArrayList<TetraCard>> getCardCollection(){
+        return cardCollection;
+    }
+    public String getName(){
+        return name;
     }
 }

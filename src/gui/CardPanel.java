@@ -1,5 +1,6 @@
 package gui;
 
+import data.TetraCard;
 import gui.ImagePanel;
 
 import java.awt.*;
@@ -7,6 +8,8 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 
 public class CardPanel extends ImagePanel{
+
+    protected TetraCard containedCard;
 
     public void redraw(String name,List<Integer> arrows){
         buildImage(name);
@@ -93,5 +96,10 @@ public class CardPanel extends ImagePanel{
                 return null;
         }
         return poly;
+    }
+
+    public void redraw(TetraCard tc){
+        redraw(tc.getName(), tc.getArrows());
+        this.containedCard = tc;
     }
 }

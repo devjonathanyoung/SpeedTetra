@@ -10,7 +10,6 @@ public class ActionRemoveImagePanel implements ActionListener {
     public ActionRemoveImagePanel(int index,PanelCardSelected pcs){
         this.index= index;
         this.pcs = pcs;
-
     }
     @Override
     public void actionPerformed(ActionEvent e) {

@@ -10,7 +10,6 @@ import java.awt.*;
 import java.util.*;
 
 public class SquarePanel extends CardPanel {
-    private TetraCard containedCard;
     private HashMap<String,SquarePanel> accessibleSquares;
     private boolean playable;
     public Player owner;
@@ -40,10 +39,6 @@ public class SquarePanel extends CardPanel {
         super.redraw(name);
     }
 
-    public void redraw(TetraCard tc){
-        super.redraw(tc.getName(), tc.getArrows());
-        this.containedCard = tc;
-    }
     public TetraCard getContainedCard(){
         return containedCard;
     }

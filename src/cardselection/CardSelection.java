@@ -11,10 +11,10 @@ public class CardSelection extends JPanel{
     public CardSelection(){
         this.setSize(600,600);
         this.setLayout(null);
-        initComponent();
         user = new User("Joueur 1");
-    }
+        initComponent();
 
+    }
 
     private void initComponent(){
         JLabel title = new JLabel("Tetramaster",SwingConstants.CENTER);
@@ -32,7 +32,5 @@ public class CardSelection extends JPanel{
         PanelCardCollection cardCollection = new PanelCardCollection(user);
         cardCollection.setBounds(150,40,450,450);
         add(cardCollection);
-
-
     }
 }

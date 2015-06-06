@@ -2,7 +2,10 @@ package cardselection;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
+import data.TetraCard;
 import data.User;
 import gui.CardPanel;
 
@@ -20,6 +23,7 @@ public class PanelCardCollection extends JPanel{
         arrowPanels = new ArrowPanel[4];
         this.user = user;
         initComponent();
+        initCardContainers();
     }
     private void initComponent(){
         int marginLeft = 20;
@@ -99,7 +103,25 @@ public class PanelCardCollection extends JPanel{
     }
 
     public void initCardContainers(){
-
+        HashMap<String, ArrayList<TetraCard>> collection = user.getCardCollection();
+        int it = 0;
+        for(String s: collection.keySet()){
+            panelsHorizontal[it].redraw(collection.get(s).get(0));
+            if(it==2){
+                int it2 = 0;
+                for(int i=1;i<collection.get(s).size();i++){
+                    panelsVertical[it2].redraw(collection.get(s).get(i));
+                    it2++;
+                    if(it2 == panelsVertical.length){
+                        break;
+                    }
+                }
+            }
+            it++;
+            if(it == panelsHorizontal.length){
+                break;
+            }
+        }
     }
 
     public void addCard(int index){
