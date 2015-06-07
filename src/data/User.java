@@ -14,11 +14,17 @@ public class User {
 
     private String name;
     private HashMap<String,ArrayList<TetraCard>> cardCollection;
+    public int nbVictory;
+    public int nbDefeat;
+    public int nbDraw;
 
     public User(String name,String mode) {
         this.name = name;
         if(mode.equalsIgnoreCase("init")){
             buildDeck();
+            nbVictory = 0;
+            nbDefeat = 0;
+            nbDraw = 0;
         } else{
             this.cardCollection = new HashMap<String, ArrayList<TetraCard>>();
             Load();
@@ -67,9 +73,18 @@ public class User {
                         arrows.add(Integer.parseInt(number));
                     }
                     addCardToDeck(new TetraCard(splited[0],arrows));
-                }
-                else{
-                    this.name = line;
+                } else if(line.contains("playername")){
+                    splited = line.split("=");
+                    this.name = splited[1];
+                } else if(line.contains("nbVictory")){
+                    splited = line.split("=");
+                    this.nbVictory = Integer.parseInt(splited[1]);
+                } else if(line.contains("nbDefeat")){
+                    splited = line.split("=");
+                    this.nbDefeat = Integer.parseInt(splited[1]);
+                } else if(line.contains("nbDraw")){
+                    splited = line.split("=");
+                    this.nbDraw = Integer.parseInt(splited[1]);
                 }
             }
         } catch (IOException ex){
@@ -79,7 +94,10 @@ public class User {
     }
     public void Save(){
         try{
-            String dataString = name + "\n";
+            String dataString = "playername=" + name + "\n";
+            dataString += "nbVictory=" +nbVictory + "\n";
+            dataString += "nbDefeat=" +nbDefeat + "\n";
+            dataString += "nbDraw=" +nbDraw + "\n";
             for(String cardName:cardCollection.keySet()){
                 for(TetraCard tc:cardCollection.get(cardName)){
                     dataString += cardName +";";

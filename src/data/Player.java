@@ -21,7 +21,7 @@ public class Player {
         hand.add(new TetraCard("dog1.jpg"));
         hand.add(new TetraCard("dog2.jpg"));
         hand.add(new TetraCard("dog4.jpg"));
-        hand.add(new TetraCard("dog1.jpg"));
+        hand.add(new TetraCard("dog5.jpg"));
         hand.add(new TetraCard("dog3.jpg"));
     }
 

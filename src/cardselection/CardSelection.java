@@ -20,7 +20,7 @@ public class CardSelection extends JLayeredPane{
     }
 
     private void initComponent(){
-        JLabel title = new JLabel("Tetramaster",SwingConstants.CENTER);
+        JLabel title = new JLabel("Card Selection",SwingConstants.CENTER);
         title.setBounds(0,0,600,40);
         add(title);
 
@@ -28,7 +28,7 @@ public class CardSelection extends JLayeredPane{
         cardSelected.setBounds(0,40,150,560);
         add(cardSelected);
 
-        PanelPlayerInfo playerInfo = new PanelPlayerInfo();
+        PanelPlayerInfo playerInfo = new PanelPlayerInfo(user);
         playerInfo.setBounds(455,60,130,100);
         add(playerInfo,2,0);
 

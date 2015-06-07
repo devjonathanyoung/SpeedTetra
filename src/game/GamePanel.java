@@ -1,5 +1,6 @@
 package game;
 
+import cardselection.CardSelection;
 import data.Npc;
 import data.Player;
 import data.TetraCard;
@@ -21,18 +22,21 @@ public class GamePanel extends JPanel{
     private JLabel lblTurn;
     private JLabel lblPlayer1Score;
     private JLabel lblPlayer2Score;
+    private FrameContainer frameContainer;
+    private User user;
 
-    public GamePanel(){
+    public GamePanel(FrameContainer frameContainer){
         player1 = new Player("Player 1");
         player2 = new Npc("NPC");
-
+        this.frameContainer = frameContainer;
         initComponent();
         updateComponent();
     }
     public GamePanel(FrameContainer frameContainer, User user, ArrayList<TetraCard> Hand){
+        this.user = user;
         player1 = new Player(user.getName(),Hand);
         player2 = new Npc("NPC");
-
+        this.frameContainer = frameContainer;
         initComponent();
         updateComponent();
     }
@@ -136,13 +140,29 @@ public class GamePanel extends JPanel{
         String result;
         if(winner != null){
             result = winner.identify() + " wins";
+            if(winner.identify().equalsIgnoreCase(player1.identify())){
+                user.nbVictory += 1;
+            }else{
+                user.nbDefeat += 1;
+            }
         } else {
             result = "Draw";
+            user.nbDraw += 1;
         }
+        user.Save();
         player1Hand.removeBorder();
         player2Hand.removeBorder();
-        lblTurn.setText("End of the Game : " + result);
         playerTurn = "endGame";
+        int n = JOptionPane.showConfirmDialog(
+                this,
+                "End of the Game : " + result + "\n Do you want to go back to card selection?",
+                "Confirm Deck",
+                JOptionPane.YES_NO_OPTION);
+        if(n == JOptionPane.YES_OPTION){
+            frameContainer.setContentPane(new CardSelection(frameContainer));
+        }else{
+            System.exit(0);
+        }
     }
     public void autoplay(){
         player2.playRandom(this,player2Hand,board);

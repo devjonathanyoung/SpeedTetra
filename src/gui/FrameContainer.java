@@ -11,7 +11,7 @@ public class FrameContainer extends JFrame{
         this.setResizable(false);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setTitle("Tetramaster");
-        //this.setContentPane(new GamePanel());
+        //this.setContentPane(new GamePanel(this));
         this.setContentPane(new CardSelection(this));
     }
 

@@ -87,7 +87,16 @@ public class PanelCardSelected extends JPanel {
         for(CardPanel cp:panels){
             Hand.add(cp.getContainedCard());
         }
-        frameContainer.setContentPane(new GamePanel(frameContainer,user,Hand));
+        int n = JOptionPane.showConfirmDialog(
+                this,
+                "Do you want to use this deck for next Game?",
+                "Confirm Deck",
+                JOptionPane.YES_NO_OPTION);
+        if(n == JOptionPane.YES_OPTION){
+            frameContainer.setContentPane(new GamePanel(frameContainer,user,Hand));
+        }else{
+          removeCardPanel(4);
+        }
     }
     private void addCardBackToDeck(TetraCard tc){
         user.addCardToDeck(tc);
