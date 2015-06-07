@@ -8,14 +8,11 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by suissia on 06/06/2015.
- */
 public class ActionAddSelectedCard implements MouseListener {
-    private CardPanel parent;
-    private PanelCardSelected currentDestination;
-    private HashMap<String, ArrayList<TetraCard>> curdeck;
-    private PanelCardCollection pcc;
+    private final CardPanel parent;
+    private final PanelCardSelected currentDestination;
+    private final HashMap<String, ArrayList<TetraCard>> curdeck;
+    private final PanelCardCollection pcc;
     public ActionAddSelectedCard(CardPanel parent,PanelCardSelected currentDestination,
                                  HashMap<String, ArrayList<TetraCard>> curdeck, PanelCardCollection pcc){
         this.parent = parent;

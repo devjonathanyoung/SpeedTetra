@@ -64,10 +64,7 @@ public class TetraCard extends RawTetraCard {
             return true;
          else if(direction.equalsIgnoreCase("west") && arrows.contains(8))
             return true;
-         else if(direction.equalsIgnoreCase("northWest") && arrows.contains(1))
-            return true;
-         else
-            return false;
+         else return direction.equalsIgnoreCase("northWest") && arrows.contains(1);
         
     }
 }

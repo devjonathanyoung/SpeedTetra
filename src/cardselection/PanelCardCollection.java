@@ -1,13 +1,13 @@
 package cardselection;
 
+import data.TetraCard;
+import data.User;
+import gui.CardPanel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import data.TetraCard;
-import data.User;
-import gui.CardPanel;
 
 public class PanelCardCollection extends JPanel{
     private CardPanel[] panelsHorizontal = null;

@@ -26,7 +26,7 @@ public class ArrowPanel extends ImagePanel{
     }
 
     private Polygon createButton(int direction){
-        Polygon poly = null;
+        Polygon poly;
         int width = this.getWidth();
         int height = this.getHeight();
 
@@ -56,7 +56,7 @@ public class ArrowPanel extends ImagePanel{
                 poly = new Polygon(xPolyW, yPolyW, xPolyW.length);
                 break;
             default:
-                return null;
+                return new Polygon(xPolyN, yPolyN, xPolyN.length);
         }
         return poly;
     }

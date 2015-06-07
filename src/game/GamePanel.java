@@ -7,10 +7,7 @@ import data.User;
 import gui.FrameContainer;
 
 import javax.swing.*;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-
-import static java.lang.Thread.sleep;
 
 public class GamePanel extends JPanel{
     private Player cardSelectedPlayer;

@@ -6,7 +6,6 @@ import game.GamePanel;
 import gui.CardPanel;
 import gui.FrameContainer;
 
-import javax.smartcardio.Card;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -63,7 +62,7 @@ public class PanelCardSelected extends JPanel {
                 break;
             }
         }
-        if(checkFull()){
+        if(isFull()){
             OpenPopup();
         }
     }
@@ -73,20 +72,20 @@ public class PanelCardSelected extends JPanel {
         parent.getCardCollection().refresh();
     }
 
-    private boolean checkFull(){
-        boolean foundFree = true;
-        for(int i=0;i<panels.length;i++){
-            if(!panels[i].isVisible()){
-                foundFree = false;
+    private boolean isFull(){
+        boolean isFull = true;
+        for(CardPanel cp:panels){
+            if(!cp.isVisible()){
+                isFull = false;
             }
         }
-        return foundFree;
+        return isFull;
     }
 
     private void OpenPopup(){
         ArrayList<TetraCard> Hand = new ArrayList<TetraCard>();
-        for(int i=0;i<panels.length;i++){
-            Hand.add(panels[i].getContainedCard());
+        for(CardPanel cp:panels){
+            Hand.add(cp.getContainedCard());
         }
         frameContainer.setContentPane(new GamePanel(frameContainer,user,Hand));
     }

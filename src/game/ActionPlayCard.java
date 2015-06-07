@@ -3,8 +3,6 @@ package game;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import static java.lang.Thread.sleep;
-
 public class ActionPlayCard implements MouseListener{
 
     private GamePanel currentGamePanel;

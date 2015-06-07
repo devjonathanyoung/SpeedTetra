@@ -1,13 +1,12 @@
 package game;
 
 import data.Player;
-import data.TetraCard;
 import gui.CardPanel;
 import gui.StaticHelper;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.*;
+import java.util.HashMap;
 
 public class SquarePanel extends CardPanel {
     private HashMap<String,SquarePanel> accessibleSquares;
@@ -35,11 +34,6 @@ public class SquarePanel extends CardPanel {
             redraw(this.containedCard);
         }
     }
-    public void redraw(String name){
-        super.redraw(name);
-    }
-
-
 
     public void attack(){
         SquarePanel attackedSquare;

@@ -4,8 +4,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class ActionArrow implements MouseListener {
-    private PanelCardCollection parent;
-    private String arrowDirection;
+    private final PanelCardCollection parent;
+    private final String arrowDirection;
 
     public ActionArrow(PanelCardCollection parent,String arrowDirection){
         this.parent = parent;

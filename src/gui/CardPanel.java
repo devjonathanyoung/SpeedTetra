@@ -1,7 +1,6 @@
 package gui;
 
 import data.TetraCard;
-import gui.ImagePanel;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -95,7 +94,7 @@ public class CardPanel extends ImagePanel{
                 poly = new Polygon(xPolyW, yPolyW, xPolyW.length);
                 break;
             default:
-                return null;
+                return new Polygon(xPolyNW, yPolyNW, xPolyNW.length);
         }
         return poly;
     }

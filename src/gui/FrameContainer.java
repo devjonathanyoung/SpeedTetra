@@ -1,7 +1,6 @@
 package gui;
 
 import cardselection.CardSelection;
-import game.GamePanel;
 
 import javax.swing.*;
 

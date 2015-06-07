@@ -1,6 +1,7 @@
 package data;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Player {
     protected List<TetraCard> hand;
