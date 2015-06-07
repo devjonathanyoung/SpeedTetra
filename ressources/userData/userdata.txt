@@ -1,5 +1,5 @@
 playername=Player 1
 nbVictory=2
-nbDefeat=0
+nbDefeat=1
 nbDraw=0
 nbDraw=0
