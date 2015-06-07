@@ -30,7 +30,10 @@ public class User {
             Load();
         }
     }
-
+    public User(String name,HashMap<String,ArrayList<TetraCard>> cardCollection){
+        this.name = name;
+        this.cardCollection = cardCollection;
+    }
     private void buildDeck(){
         this.cardCollection = new HashMap<String, ArrayList<TetraCard>>();
         addCardToDeck(new TetraCard("dog1.jpg"));
@@ -65,15 +68,7 @@ public class User {
             List<String> lines = Files.readAllLines(Paths.get(StaticHelper.PATHTOUSERFILE, "userdata.txt")
                     , Charset.defaultCharset());
             for (String line : lines) {
-                if(line.contains(";")){
-                    splited = line.split(";");
-                    splited2 = splited[1].split(",");
-                    arrows = new ArrayList<Integer>();
-                    for (String number:splited2){
-                        arrows.add(Integer.parseInt(number));
-                    }
-                    addCardToDeck(new TetraCard(splited[0],arrows));
-                } else if(line.contains("playername")){
+                if(line.contains("playername")){
                     splited = line.split("=");
                     this.name = splited[1];
                 } else if(line.contains("nbVictory")){
@@ -87,17 +82,43 @@ public class User {
                     this.nbDraw = Integer.parseInt(splited[1]);
                 }
             }
+            lines = Files.readAllLines(Paths.get(StaticHelper.PATHTOUSERFILE, "userdeck.txt"),
+                    Charset.defaultCharset());
+            for (String line : lines) {
+                if(line.contains(";")){
+                    splited = line.split(";");
+                    splited2 = splited[1].split(",");
+                    arrows = new ArrayList<Integer>();
+                    for (String number:splited2){
+                        arrows.add(Integer.parseInt(number));
+                    }
+                    addCardToDeck(new TetraCard(splited[0],arrows));
+                }
+            }
         } catch (IOException ex){
             ex.printStackTrace();
         }
 
     }
     public void Save(){
+        SaveStat();
+        SaveDeck();
+    }
+    public void SaveStat(){
         try{
             String dataString = "playername=" + name + "\n";
             dataString += "nbVictory=" +nbVictory + "\n";
             dataString += "nbDefeat=" +nbDefeat + "\n";
             dataString += "nbDraw=" +nbDraw + "\n";
+            dataString += "nbDraw=" +nbDraw + "\n";
+            Files.write(Paths.get(StaticHelper.PATHTOUSERFILE, "userdata.txt"), dataString.getBytes());
+        }catch (IOException ex){
+            ex.printStackTrace();
+        }
+    }
+    private void SaveDeck(){
+        try{
+            String dataString = "";
             for(String cardName:cardCollection.keySet()){
                 for(TetraCard tc:cardCollection.get(cardName)){
                     dataString += cardName +";";
@@ -108,10 +129,9 @@ public class User {
                     dataString += "\n";
                 }
             }
-            Files.write(Paths.get(StaticHelper.PATHTOUSERFILE, "userdata.txt"), dataString.getBytes());
+            Files.write(Paths.get(StaticHelper.PATHTOUSERFILE, "userdeck.txt"), dataString.getBytes());
         }catch (IOException ex){
             ex.printStackTrace();
         }
-
     }
 }

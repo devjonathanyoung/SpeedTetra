@@ -4,10 +4,11 @@ import data.User;
 import gui.FrameContainer;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class CardSelection extends JLayeredPane{
 
-    private User user;
+    public static User user;
     private FrameContainer parent;
     private PanelCardCollection cardCollection;
 
@@ -21,6 +22,7 @@ public class CardSelection extends JLayeredPane{
 
     private void initComponent(){
         JLabel title = new JLabel("Card Selection",SwingConstants.CENTER);
+        title.setFont(new Font("TimesRoman", Font.PLAIN, 24));
         title.setBounds(0,0,600,40);
         add(title);
 
@@ -29,11 +31,11 @@ public class CardSelection extends JLayeredPane{
         add(cardSelected);
 
         PanelPlayerInfo playerInfo = new PanelPlayerInfo(user);
-        playerInfo.setBounds(455,60,130,100);
+        playerInfo.setBounds(455,80,130,100);
         add(playerInfo,2,0);
 
         cardCollection = new PanelCardCollection(user,cardSelected);
-        cardCollection.setBounds(150,40,450,450);
+        cardCollection.setBounds(150,40,450,560);
         add(cardCollection,1,0);
     }
     public PanelCardCollection getCardCollection(){

@@ -21,7 +21,7 @@ public class PanelCardCollection extends JPanel{
 
     public PanelCardCollection(User user,PanelCardSelected selectedCards){
         this.setLayout(null);
-        this.setBackground(Color.green);
+        this.setBackground(new Color(242,162,92));
         panelsHorizontal = new CardPanel[5];
         panelsVertical = new CardPanel[4];
         arrowPanels = new ArrowPanel[4];

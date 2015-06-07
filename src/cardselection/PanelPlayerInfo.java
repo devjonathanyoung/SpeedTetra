@@ -14,7 +14,7 @@ public class PanelPlayerInfo extends JPanel {
 
     public PanelPlayerInfo(User user){
         this.user = user;
-        this.setBackground(Color.pink);
+        this.setBackground(new Color(166,95,33));
         this.setLayout(null);
         getPlayerInfo();
         initComponent();
@@ -30,6 +30,7 @@ public class PanelPlayerInfo extends JPanel {
 
     private void addLabel(String labelname){
         JLabel temp = new JLabel(labelname + " : " + playerInfo.get(labelname),SwingConstants.CENTER);
+        temp.setForeground(Color.white);
         temp.setBounds(0,marginTop,130,20);
         marginTop += 20;
         add(temp);

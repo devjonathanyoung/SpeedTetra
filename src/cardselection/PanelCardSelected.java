@@ -22,7 +22,7 @@ public class PanelCardSelected extends JPanel {
         this.user = user;
         this.frameContainer = frameContainer;
         this.setLayout(null);
-        this.setBackground(Color.cyan);
+        this.setBackground(new Color(4,102,140));
         panels = new CardPanel[5];
         buttons = new JButton[5];
         initComponent();

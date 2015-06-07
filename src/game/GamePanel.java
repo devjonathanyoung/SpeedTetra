@@ -8,6 +8,7 @@ import data.User;
 import gui.FrameContainer;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class GamePanel extends JPanel{
@@ -23,19 +24,19 @@ public class GamePanel extends JPanel{
     private JLabel lblPlayer1Score;
     private JLabel lblPlayer2Score;
     private FrameContainer frameContainer;
-    private User user;
 
     public GamePanel(FrameContainer frameContainer){
         player1 = new Player("Player 1");
         player2 = new Npc("NPC");
         this.frameContainer = frameContainer;
+        this.setBackground(new Color(242,162,92));
         initComponent();
         updateComponent();
     }
     public GamePanel(FrameContainer frameContainer, User user, ArrayList<TetraCard> Hand){
-        this.user = user;
         player1 = new Player(user.getName(),Hand);
         player2 = new Npc("NPC");
+        this.setBackground(new Color(242,162,92));
         this.frameContainer = frameContainer;
         initComponent();
         updateComponent();
@@ -65,12 +66,12 @@ public class GamePanel extends JPanel{
     }
     private void updateComponent(){
         player1Hand = new HandPanel(player1,this);
-        player1Hand.setBounds(5,60,90,440);
+        player1Hand.setBounds(5,60,85,440);
         player1Hand.borderize(0);
         add(player1Hand);
 
         player2Hand = new HandPanel(player2,this);
-        player2Hand.setBounds(505,60,90,440);
+        player2Hand.setBounds(505,60,85,440);
         add(player2Hand);
 
         add(board);
@@ -141,15 +142,15 @@ public class GamePanel extends JPanel{
         if(winner != null){
             result = winner.identify() + " wins";
             if(winner.identify().equalsIgnoreCase(player1.identify())){
-                user.nbVictory += 1;
+                CardSelection.user.nbVictory += 1;
             }else{
-                user.nbDefeat += 1;
+                CardSelection.user.nbDefeat += 1;
             }
         } else {
             result = "Draw";
-            user.nbDraw += 1;
+            CardSelection.user.nbDraw += 1;
         }
-        user.Save();
+        CardSelection.user.SaveStat();
         player1Hand.removeBorder();
         player2Hand.removeBorder();
         playerTurn = "endGame";

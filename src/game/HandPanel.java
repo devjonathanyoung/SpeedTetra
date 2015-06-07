@@ -19,6 +19,7 @@ public class HandPanel extends JPanel{
         this.player = player;
         this.parent = parent;
         this.setLayout(null);
+        this.setBackground(new Color(242,162,92));
         this.playerHandContent = player.getHand();
         borderer = new JPanel();
         borderer.setBackground(Color.red);
