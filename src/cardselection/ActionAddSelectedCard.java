@@ -41,7 +41,11 @@ public class ActionAddSelectedCard implements MouseListener {
         }else{
             if(curdeck.get(selectedCard.getName()).size() <= 0){
                 curdeck.remove(selectedCard.getName());
-                pcc.curHorizontalCounter--;
+                if(pcc.curHorizontalCounter - 1 >= 0){
+                    pcc.curHorizontalCounter--;
+                }else{
+                    pcc.curHorizontalCounter = 0;
+                }
                 pcc.curVerticalCounter = 0;
             }
         }
