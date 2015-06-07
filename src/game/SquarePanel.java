@@ -42,7 +42,7 @@ public class SquarePanel extends CardPanel {
 
 
     public void attack(){
-        SquarePanel attackedSquare = null;
+        SquarePanel attackedSquare;
         boolean canDef;
         boolean win;
         for(String direction: accessibleSquares.keySet()){

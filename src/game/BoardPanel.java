@@ -4,6 +4,7 @@ import data.Player;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -71,6 +72,21 @@ public class BoardPanel extends JPanel {
             return player2;
         }
         return null;
+    }
+    private ArrayList<SquarePanel> getEmptySquares(){
+        ArrayList<SquarePanel> emptySquares = new ArrayList<SquarePanel>();
+        for(SquarePanel sp: boardSquares.values()){
+            if(sp.isPlayable()){
+                emptySquares.add(sp);
+            }
+        }
+        return emptySquares;
+    }
+    public SquarePanel getRandomPlayableSquare(){
+        Random randomIntGenerator = new Random();
+        ArrayList<SquarePanel> emptySquares = getEmptySquares();
+        int randomSquareIndex = randomIntGenerator.nextInt(emptySquares.size() - 1) + 1;
+        return emptySquares.get(randomSquareIndex);
     }
     private void initSquaresRelations(){
         SquarePanel square1 = boardSquares.get("0:0");

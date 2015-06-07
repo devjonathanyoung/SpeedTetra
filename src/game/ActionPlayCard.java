@@ -3,6 +3,8 @@ package game;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import static java.lang.Thread.sleep;
+
 public class ActionPlayCard implements MouseListener{
 
     private GamePanel currentGamePanel;
@@ -25,9 +27,11 @@ public class ActionPlayCard implements MouseListener{
             parent.redraw(currentGamePanel.getCurrentCard());
             parent.owner = currentGamePanel.getCardSelectedPlayer();
             currentGamePanel.removeCurrentCard();
-            currentGamePanel.refresh();
             parent.setPlayable(false);
             parent.attack();
+            currentGamePanel.refresh();
+            currentGamePanel.changeTurn();
+            currentGamePanel.autoplay();
             currentGamePanel.changeTurn();
         }
     }

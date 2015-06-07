@@ -3,35 +3,35 @@ package data;
 import java.util.*;
 
 public class Player {
-    protected List<TetraCard> Hand;
+    protected List<TetraCard> hand;
     protected String name;
 
     public Player(String name){
         this.name = name;
-        Hand = new ArrayList<TetraCard>();
+        hand = new ArrayList<TetraCard>();
         initHand();
     }
     public Player(String name,List<TetraCard> Hand){
         this.name = name;
-        this.Hand = Hand;
+        this.hand = Hand;
     }
 
     protected void initHand(){
-        Hand.add(new TetraCard("dog1.jpg"));
-        Hand.add(new TetraCard("dog2.jpg"));
-        Hand.add(new TetraCard("dog4.jpg"));
-        Hand.add(new TetraCard("dog1.jpg"));
-        Hand.add(new TetraCard("dog3.jpg"));
+        hand.add(new TetraCard("dog1.jpg"));
+        hand.add(new TetraCard("dog2.jpg"));
+        hand.add(new TetraCard("dog4.jpg"));
+        hand.add(new TetraCard("dog1.jpg"));
+        hand.add(new TetraCard("dog3.jpg"));
     }
 
     public TetraCard getCard(int cardNumber){
-        return Hand.get(cardNumber);
+        return hand.get(cardNumber);
     }
     public List<TetraCard> getHand(){
-        return Hand;
+        return hand;
     }
     public void removeCardFromHand(int index){
-        this.Hand.remove(index);
+        this.hand.remove(index);
     }
     public String identify(){
         return name;

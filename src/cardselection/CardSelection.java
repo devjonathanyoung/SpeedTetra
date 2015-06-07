@@ -14,7 +14,7 @@ public class CardSelection extends JPanel{
         this.parent = parent;
         this.setSize(600,600);
         this.setLayout(null);
-        user = new User("Joueur 1");
+        user = new User("Player 1","load");
         initComponent();
     }
 

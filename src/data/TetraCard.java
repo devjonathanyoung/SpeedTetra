@@ -12,12 +12,16 @@ public class TetraCard extends RawTetraCard {
         arrows = new ArrayList<Integer>();
         generateRandomArrows();
     }
+    public TetraCard(String name,List<Integer> arrows){
+        super(name);
+        this.arrows = arrows;
+    }
     private void generateRandomArrows(){
         Random r = new Random();
-        int numberOfArrows = r.nextInt(7) + 1;
+        int numberOfArrows = r.nextInt(8) + 1;
         int chooser;
         for(int i=1;i<=numberOfArrows;){
-            chooser = r.nextInt(7) +1;
+            chooser = r.nextInt(8) +1;
             if(!arrows.contains(chooser)){
                 arrows.add(chooser);
                 i++;

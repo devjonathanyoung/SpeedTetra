@@ -2,6 +2,7 @@ package gui;
 
 public class StaticHelper {
     public static String PATHTOIMAGES = "ressources\\images";
+    public static String PATHTOUSERFILE = "ressources\\userdata";
 
     public static String getOppositeDirection(String direction){
         if(direction.equalsIgnoreCase("north"))

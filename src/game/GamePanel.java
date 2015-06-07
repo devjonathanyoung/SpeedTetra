@@ -1,6 +1,5 @@
 package game;
 
-import cardselection.ArrowPanel;
 import data.Npc;
 import data.Player;
 import data.TetraCard;
@@ -8,13 +7,16 @@ import data.User;
 import gui.FrameContainer;
 
 import javax.swing.*;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+
+import static java.lang.Thread.sleep;
 
 public class GamePanel extends JPanel{
     private Player cardSelectedPlayer;
     private int cardSelectedNumber;
     private Player player1;
-    private Player player2;
+    private Npc player2;
     private String playerTurn;
     private HandPanel player1Hand;
     private HandPanel player2Hand;
@@ -24,7 +26,7 @@ public class GamePanel extends JPanel{
     private JLabel lblPlayer2Score;
 
     public GamePanel(){
-        player1 = new Player("Joueur 1");
+        player1 = new Player("Player 1");
         player2 = new Npc("NPC");
 
         initComponent();
@@ -136,7 +138,7 @@ public class GamePanel extends JPanel{
         Player winner = board.getWinner(player1, player2);
         String result;
         if(winner != null){
-            result = winner.identify();
+            result = winner.identify() + " wins";
         } else {
             result = "Draw";
         }
@@ -144,5 +146,8 @@ public class GamePanel extends JPanel{
         player2Hand.removeBorder();
         lblTurn.setText("End of the Game : " + result);
         playerTurn = "endGame";
+    }
+    public void autoplay(){
+        player2.playRandom(this,player2Hand,board);
     }
 }
