@@ -104,4 +104,5 @@ public class CardPanel extends ImagePanel{
         redraw(tc.getName(), tc.getArrows());
         this.containedCard = tc;
     }
+
 }

@@ -13,8 +13,11 @@ public class PanelCardCollection extends JPanel{
     private CardPanel[] panelsHorizontal = null;
     private CardPanel[] panelsVertical = null;
     private ArrowPanel[] arrowPanels = null;
-    private User user;
     private PanelCardSelected selectedCards;
+    private HashMap<String, ArrayList<TetraCard>> curdeck;
+    public int curVerticalCounter;
+    public int curHorizontalCounter;
+    private String curCardString;
 
     public PanelCardCollection(User user,PanelCardSelected selectedCards){
         this.setLayout(null);
@@ -22,8 +25,10 @@ public class PanelCardCollection extends JPanel{
         panelsHorizontal = new CardPanel[5];
         panelsVertical = new CardPanel[4];
         arrowPanels = new ArrowPanel[4];
-        this.user = user;
+        this.curdeck = user.getCardCollection();
         this.selectedCards = selectedCards;
+        this.curHorizontalCounter = 0;
+        this.curVerticalCounter = 0;
         initComponent();
         initCardContainers();
     }
@@ -34,6 +39,7 @@ public class PanelCardCollection extends JPanel{
         arrowPanels[0] = new ArrowPanel();
         arrowPanels[0].setBounds(marginLeft,marginTop+22,25,25);
         arrowPanels[0].drawButton(4);
+        arrowPanels[0].addMouseListener(new ActionArrow(this, "left"));
         marginLeft += 40;
 
         panelsHorizontal[0] = new CardPanel();
@@ -48,7 +54,7 @@ public class PanelCardCollection extends JPanel{
 
         panelsHorizontal[2] = new CardPanel();
         panelsHorizontal[2].setBounds(marginLeft, marginTop, 70, 70);
-        panelsHorizontal[2].addMouseListener(new ActionAddSelectedCard(panelsHorizontal[2],selectedCards));
+        panelsHorizontal[2].addMouseListener(new ActionAddSelectedCard(panelsHorizontal[2],selectedCards,curdeck,this));
         marginLeft += 85;
 
         panelsHorizontal[3] = new CardPanel();
@@ -62,6 +68,7 @@ public class PanelCardCollection extends JPanel{
         arrowPanels[3] = new ArrowPanel();
         arrowPanels[3].setBounds(marginLeft, marginTop + 22, 25, 25);
         arrowPanels[3].drawButton(2);
+        arrowPanels[3].addMouseListener(new ActionArrow(this, "right"));
 
         for(CardPanel cp:panelsHorizontal){
             cp.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -81,48 +88,89 @@ public class PanelCardCollection extends JPanel{
         arrowPanels[1] = new ArrowPanel();
         arrowPanels[1].setBounds(marginLeft + 22, marginTopVerticalCards,25,25);
         arrowPanels[1].drawButton(1);
+        arrowPanels[1].addMouseListener(new ActionArrow(this,"top"));
         marginTopVerticalCards += 40;
-
-        panelsVertical[0] = new CardPanel();
-        panelsVertical[0].setBounds(marginLeft+10,marginTopVerticalCards,50,50);
-        marginTopVerticalCards += 65;
-
-        panelsVertical[1] = new CardPanel();
-        panelsVertical[1].setBounds(marginLeft + 10, marginTopVerticalCards, 50, 50);
-        marginTopVerticalCards += 150;
-
-        panelsVertical[2] = new CardPanel();
-        panelsVertical[2].setBounds(marginLeft + 10, marginTopVerticalCards, 50, 50);
-        marginTopVerticalCards += 65;
 
         panelsVertical[3] = new CardPanel();
         panelsVertical[3].setBounds(marginLeft + 10, marginTopVerticalCards, 50, 50);
         marginTopVerticalCards += 65;
 
+        panelsVertical[2] = new CardPanel();
+        panelsVertical[2].setBounds(marginLeft + 10, marginTopVerticalCards, 50, 50);
+        marginTopVerticalCards += 150;
+
+        panelsVertical[1] = new CardPanel();
+        panelsVertical[1].setBounds(marginLeft + 10, marginTopVerticalCards, 50, 50);
+        marginTopVerticalCards += 65;
+
+        panelsVertical[0] = new CardPanel();
+        panelsVertical[0].setBounds(marginLeft + 10, marginTopVerticalCards, 50, 50);
+        marginTopVerticalCards += 65;
+
         arrowPanels[2] = new ArrowPanel();
         arrowPanels[2].setBounds(marginLeft + 22, marginTopVerticalCards, 25, 25);
         arrowPanels[2].drawButton(3);
+        arrowPanels[2].addMouseListener(new ActionArrow(this, "bot"));
     }
-
+    public void refresh(){
+        initCardContainers();
+    }
     public void initCardContainers(){
-        HashMap<String, ArrayList<TetraCard>> collection = user.getCardCollection();
-        int it = 0;
-        for(String s: collection.keySet()){
-            panelsHorizontal[it].redraw(collection.get(s).get(0));
-            if(it==2){
-                int it2 = 0;
-                for(int i=1;i<collection.get(s).size();i++){
-                    panelsVertical[it2].redraw(collection.get(s).get(i));
-                    it2++;
-                    if(it2 == panelsVertical.length){
-                        break;
-                    }
-                }
-            }
-            it++;
-            if(it == panelsHorizontal.length){
-                break;
-            }
+        hidePanels();
+        ArrayList<String> temp = new ArrayList<String>(curdeck.keySet());
+        curCardString = temp.get(curHorizontalCounter);
+        if(curVerticalCounter - 2 >= 0){
+            panelsVertical[0].redraw(curdeck.get(curCardString).get(curVerticalCounter - 2));
+            panelsVertical[0].setVisible(true);
+        }
+        if(curVerticalCounter - 1 >= 0){
+            panelsVertical[1].redraw(curdeck.get(curCardString).get(curVerticalCounter - 1));
+            panelsVertical[1].setVisible(true);
+        }
+        if(curVerticalCounter + 1 < curdeck.get(curCardString).size()){
+            panelsVertical[2].redraw(curdeck.get(curCardString).get(curVerticalCounter + 1));
+            panelsVertical[2].setVisible(true);
+        }
+        if(curVerticalCounter + 2 < curdeck.get(curCardString).size()){
+            panelsVertical[3].redraw(curdeck.get(curCardString).get(curVerticalCounter + 2));
+            panelsVertical[3].setVisible(true);
+        }
+        if(curHorizontalCounter - 2 >= 0){
+            panelsHorizontal[0].redraw(curdeck.get(temp.get(curHorizontalCounter - 2)).get(0));
+            panelsHorizontal[0].setVisible(true);
+        }
+        if(curHorizontalCounter - 1 >= 0){
+            panelsHorizontal[1].redraw(curdeck.get(temp.get(curHorizontalCounter - 1)).get(0));
+            panelsHorizontal[1].setVisible(true);
+        }
+        panelsHorizontal[2].redraw(curdeck.get(temp.get(curHorizontalCounter)).get(curVerticalCounter));
+        panelsHorizontal[2].setVisible(true);
+        if(curHorizontalCounter + 1 < curdeck.size()){
+            panelsHorizontal[3].redraw(curdeck.get(temp.get(curHorizontalCounter + 1)).get(0));
+            panelsHorizontal[3].setVisible(true);
+        }
+        if(curHorizontalCounter + 2 < curdeck.size()){
+            panelsHorizontal[4].redraw(curdeck.get(temp.get(curHorizontalCounter + 2)).get(0));
+            panelsHorizontal[4].setVisible(true);
+        }
+    }
+    public void incrementVerticalCounter(){
+        if(curVerticalCounter + 1 < curdeck.get(curCardString).size()){
+            curVerticalCounter++;
+        }
+    }
+    public void incrementHorizontalCounter(){
+        if(curHorizontalCounter + 1 < curdeck.size()){
+            curHorizontalCounter++;
+            curVerticalCounter = 0;
+        }
+    }
+    private void hidePanels(){
+        for(CardPanel cp:panelsHorizontal){
+            cp.setVisible(false);
+        }
+        for(CardPanel cp:panelsVertical){
+            cp.setVisible(false);
         }
     }
 }

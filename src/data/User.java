@@ -42,7 +42,7 @@ public class User {
         addCardToDeck(new TetraCard("dog5.jpg"));
         Save();
     }
-    private void addCardToDeck(TetraCard tc){
+    public void addCardToDeck(TetraCard tc){
         if(!cardCollection.containsKey(tc.getName()))
             cardCollection.put(tc.getName(),new ArrayList<TetraCard>());
         cardCollection.get(tc.getName()).add(tc);

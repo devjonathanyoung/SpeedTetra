@@ -9,6 +9,7 @@ public class CardSelection extends JPanel{
 
     private User user;
     private FrameContainer parent;
+    private PanelCardCollection cardCollection;
 
     public CardSelection(FrameContainer parent){
         this.parent = parent;
@@ -23,7 +24,7 @@ public class CardSelection extends JPanel{
         title.setBounds(0,0,600,40);
         add(title);
 
-        PanelCardSelected cardSelected = new PanelCardSelected(parent,user);
+        PanelCardSelected cardSelected = new PanelCardSelected(parent,user,this);
         cardSelected.setBounds(0,40,150,560);
         add(cardSelected);
 
@@ -31,8 +32,11 @@ public class CardSelection extends JPanel{
         playerInfo.setBounds(455,60,130,100);
         add(playerInfo);
 
-        PanelCardCollection cardCollection = new PanelCardCollection(user,cardSelected);
+        cardCollection = new PanelCardCollection(user,cardSelected);
         cardCollection.setBounds(150,40,450,450);
         add(cardCollection);
+    }
+    public PanelCardCollection getCardCollection(){
+        return cardCollection;
     }
 }

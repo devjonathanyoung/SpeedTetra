@@ -6,6 +6,7 @@ import game.GamePanel;
 import gui.CardPanel;
 import gui.FrameContainer;
 
+import javax.smartcardio.Card;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -15,8 +16,10 @@ public class PanelCardSelected extends JPanel {
     private JButton[] buttons;
     private FrameContainer frameContainer;
     private User user;
+    private CardSelection parent;
 
-    public PanelCardSelected(FrameContainer frameContainer, User user){
+    public PanelCardSelected(FrameContainer frameContainer, User user, CardSelection parent){
+        this.parent = parent;
         this.user = user;
         this.frameContainer = frameContainer;
         this.setLayout(null);
@@ -65,7 +68,9 @@ public class PanelCardSelected extends JPanel {
         }
     }
     public void removeCardPanel(int i){
-       hideCardPanel(i);
+        addCardBackToDeck(panels[i].getContainedCard());
+        hideCardPanel(i);
+        parent.getCardCollection().refresh();
     }
 
     private boolean checkFull(){
@@ -85,5 +90,7 @@ public class PanelCardSelected extends JPanel {
         }
         frameContainer.setContentPane(new GamePanel(frameContainer,user,Hand));
     }
-
+    private void addCardBackToDeck(TetraCard tc){
+        user.addCardToDeck(tc);
+    }
 }
