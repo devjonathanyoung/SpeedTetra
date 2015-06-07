@@ -5,7 +5,7 @@ import gui.FrameContainer;
 
 import javax.swing.*;
 
-public class CardSelection extends JPanel{
+public class CardSelection extends JLayeredPane{
 
     private User user;
     private FrameContainer parent;
@@ -30,11 +30,11 @@ public class CardSelection extends JPanel{
 
         PanelPlayerInfo playerInfo = new PanelPlayerInfo();
         playerInfo.setBounds(455,60,130,100);
-        add(playerInfo);
+        add(playerInfo,2,0);
 
         cardCollection = new PanelCardCollection(user,cardSelected);
         cardCollection.setBounds(150,40,450,450);
-        add(cardCollection);
+        add(cardCollection,1,0);
     }
     public PanelCardCollection getCardCollection(){
         return cardCollection;
